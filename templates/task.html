@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task | SmartTask</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SmartTask</div>
+
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'task' %}">Add Task</a></li>
+            <li><a href="{% url 'planner' %}">AI Planner</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+    <section class="task-page">
+
+        <div class="form-card">
+
+            <h1>Add New Task</h1>
+
+            <p class="subtitle">
+                Create and organize your tasks efficiently.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="input-group">
+
+                    <label for="taskName">
+                        Task Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="taskName"
+                        name="title"
+                        placeholder="Enter task name"
+                        required
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="taskDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="taskDescription"
+                        name="description"
+                        rows="5"
+                        placeholder="Enter task description"
+                    ></textarea>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="taskDeadline">
+                        Deadline
+                    </label>
+
+                    <input
+                        type="date"
+                        id="taskDeadline"
+                        name="deadline"
+                        required
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label for="taskPriority">
+                        Priority
+                    </label>
+
+                    <select id="taskPriority" name="priority">
+
+                        <option value="High">
+                            High Priority
+                        </option>
+
+                        <option value="Medium">
+                            Medium Priority
+                        </option>
+
+                        <option value="Low">
+                            Low Priority
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Add Task
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <script src="{% static 'script.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartTask Planner</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SmartTask</div>
+
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'task' %}">Add Task</a></li>
+            <li><a href="{% url 'planner' %}">AI Planner</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>
+                Never Miss A Deadline Again
+            </h1>
+
+            <p>
+                AI-powered productivity companion that helps
+                students and professionals organize, prioritize
+                and complete tasks before deadlines.
+            </p>
+
+            <a href="{% url 'dashboard' %}">
+                <button class="btn">
+                    Get Started
+                </button>
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="features">
+
+        <h2>Why Choose SmartTask?</h2>
+
+        <div class="feature-container">
+
+            <div class="feature-card">
+                <h3>Task Management</h3>
+                <p>
+                    Easily add and manage all your daily tasks.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>AI Scheduling</h3>
+                <p>
+                    Generate smart schedules based on priorities.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Deadline Tracking</h3>
+                <p>
+                    Stay ahead of important deadlines.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <p>SmartTask Planner © 2026</p>
+    </footer>
+
+</body>
+</html>
